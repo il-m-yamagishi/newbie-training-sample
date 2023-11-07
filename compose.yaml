@@ -1,0 +1,26 @@
+services:
+  game-server:
+    image: php:8.2-cli-alpine
+    volumes:
+      - ./game-server:/var/www/app
+    ports:
+      - 80:8080
+    working_dir: /var/www/app
+    command: php artisan serve --host=0.0.0.0 --port=8080
+
+  game-client:
+    image: node:20-alpine
+    volumes:
+      - ./game-client:/var/www/app
+    ports:
+      - 5173:5173
+    working_dir: /var/www/app
+    command: npm run dev
+
+  composer:
+    image: composer:latest
+    profiles:
+      - tool
+    volumes:
+      - ./game-server:/var/www/app
+    working_dir: /var/www/app
