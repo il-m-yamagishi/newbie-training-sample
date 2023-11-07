@@ -16,7 +16,7 @@ cd newbie-training-sample
 ```
 
 - Access to http://localhost to show user landing page.
-- Access to http://localhost/admin/ to show administrator landing page.
+- Access to http://localhost:30080/admin/ to show administrator landing page.
 
 ## FAQ
 

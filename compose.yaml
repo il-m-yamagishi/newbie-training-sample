@@ -4,18 +4,19 @@ services:
     volumes:
       - ./game-server:/var/www/app
     ports:
-      - 80:8080
+      - 30080:30080
     working_dir: /var/www/app
-    command: php artisan serve --host=0.0.0.0 --port=8080
+    command: php artisan serve --host=0.0.0.0 --port=30080
 
   game-client:
     image: node:20-alpine
     volumes:
       - ./game-client:/var/www/app
     ports:
+      - 80:30081
       - 5173:5173
     working_dir: /var/www/app
-    command: npm run dev
+    command: npm run dev -- --host=0.0.0.0 --port=30081
 
   composer:
     image: composer:latest
