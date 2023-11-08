@@ -1,6 +1,7 @@
 services:
   game-server:
-    image: php:8.2-cli-alpine
+    build:
+      context: ./game-server
     volumes:
       - ./game-server:/var/www/app
     ports:
@@ -47,7 +48,7 @@ services:
       - mysql
 
   composer:
-    image: composer:latest
+    image: composer:2
     profiles:
       - tool
     volumes:
