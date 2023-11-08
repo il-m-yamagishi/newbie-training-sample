@@ -1,5 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * @license Apache-2.0
+ */
+
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

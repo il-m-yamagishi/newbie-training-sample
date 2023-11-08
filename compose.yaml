@@ -7,6 +7,9 @@ services:
       - 30080:30080
     working_dir: /var/www/app
     command: php artisan serve --host=0.0.0.0 --port=30080
+    depends_on:
+      - mysql
+      - redis
 
   game-client:
     image: node:20-alpine
@@ -18,6 +21,31 @@ services:
     working_dir: /var/www/app
     command: npm run dev -- --host=0.0.0.0 --port=30081
 
+  mysql:
+    image: mysql:8-debian
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: game
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: game_db
+    volumes:
+      - game-mysql:/var/lib/mysql
+
+  redis:
+    image: redis:alpine
+
+  phpmyadmin:
+    image: phpmyadmin:fpm-alpine
+    ports:
+      - 30081:80
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: mysql
+      PMA_PASSWORD: secret
+    depends_on:
+      - mysql
+
   composer:
     image: composer:latest
     profiles:
@@ -25,3 +53,6 @@ services:
     volumes:
       - ./game-server:/var/www/app
     working_dir: /var/www/app
+
+volumes:
+  game-mysql: {}

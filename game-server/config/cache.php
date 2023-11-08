@@ -1,5 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * @license Apache-2.0
+ */
+
 use Illuminate\Support\Str;
 
 return [
@@ -15,7 +21,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default' => env('CACHE_DRIVER', 'redis'),
 
     /*
     |--------------------------------------------------------------------------

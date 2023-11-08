@@ -1,5 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * @license Apache-2.0
+ */
+
 use Illuminate\Support\Str;
 
 return [
@@ -18,7 +24,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => env('SESSION_DRIVER', 'redis'),
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +78,7 @@ return [
     |
     */
 
-    'connection' => env('SESSION_CONNECTION'),
+    'connection' => env('SESSION_CONNECTION', 'session'),
 
     /*
     |--------------------------------------------------------------------------
