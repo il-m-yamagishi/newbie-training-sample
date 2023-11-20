@@ -27,6 +27,7 @@ case $1 in
         docker compose down --remove-orphans -v
         ;;
     "start" )
+        docker compose down --remove-orphans
         docker compose up
         ;;
     "stop" )
